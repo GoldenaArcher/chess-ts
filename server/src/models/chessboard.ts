@@ -1,4 +1,5 @@
-import { getIndeciesFromPos } from './../util/chessUtil';
+import { isLegalMove, getIndeciesFromPos } from './../util/chessUtil';
+import IllegalPositionError from './errors/illegalPositionError';
 import ChessPiece from './pieces/chessPiece';
 import Player from './player';
 
@@ -18,18 +19,43 @@ class Chessboard {
 
   public initialize(): void {}
 
+  /**
+   *
+   * @param {string} position
+   * @param {ChessPiece} piece
+   * @returns {boolean}
+   * @throws {IllegalPositionError}
+   */
   public placePiece(position: string, piece: ChessPiece): boolean {
+    if (!isLegalMove(position))
+      throw new IllegalPositionError(
+        `Position ${position} is not a legal position`
+      );
+
     const { col, row } = getIndeciesFromPos(position);
     this.board[row][col] = piece;
     piece.setPosition(position);
     return true;
   }
 
+  /**
+   *
+   * @param {string} position
+   * @returns {ChessPiece}
+   */
   public getPiece(position: string): ChessPiece | null {
-    return null;
+    const { col, row } = getIndeciesFromPos(position);
+
+    return this.board[row][col];
   }
 
-  public move(): void {}
+  /**
+   *
+   * @param {string} fromPos
+   * @param {string} toPos
+   * @throws {IllegalMoveError}
+   */
+  public move(fromPos: string, toPos: string): void {}
 }
 
 export default Chessboard;
