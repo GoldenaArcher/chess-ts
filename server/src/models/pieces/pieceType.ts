@@ -1,4 +1,6 @@
-enum PieceType {
+import Color from '../color';
+
+export enum PieceType {
   Pawn = 'PAWN',
   King = 'KING',
   Queen = 'QUEEN',
@@ -7,4 +9,7 @@ enum PieceType {
   Rook = 'ROOK',
 }
 
-export default PieceType;
+export interface PieceObject {
+  color: Color;
+  type: PieceType;
+}

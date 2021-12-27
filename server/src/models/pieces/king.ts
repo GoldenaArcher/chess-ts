@@ -1,19 +1,17 @@
-import { isWhite } from './../../util/chessUtil';
 import ChessPiece from './chessPiece';
 import { PieceType } from './pieceType';
 
-class Bishop extends ChessPiece {
+class King extends ChessPiece {
   public getType(): PieceType {
-    return PieceType.Bishop;
+    return PieceType.King;
   }
 
   public getLegalMoves(): string[] {
-    return [];
+    throw new Error('Method not implemented.');
   }
-
   public toString(): string {
-    return isWhite(this) ? '♗' : '♝';
+    throw new Error('Method not implemented.');
   }
 }
 
-export default Bishop;
+export default King;
