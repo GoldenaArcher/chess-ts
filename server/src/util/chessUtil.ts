@@ -89,3 +89,11 @@ export const standardOpening = {
   g2: { color: Color.White, type: PieceType.Pawn },
   h2: { color: Color.White, type: PieceType.Pawn },
 };
+
+export const getExistedPiece = (
+  pos: string,
+  board: Chessboard
+): boolean | ChessPiece => {
+  if (!isLegalMove(pos)) return false;
+  return board.getPiece(pos);
+};
