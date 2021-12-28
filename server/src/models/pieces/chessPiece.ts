@@ -2,15 +2,14 @@ import {
   isLegalMove,
   getPosFromIndecies,
   getIndeciesFromPos,
-  isSameColor,
 } from './../../util/chessUtil';
 import { PieceType, PieceObject } from './pieceType';
 import Chessboard from '../chessboard';
 import Color from '../color';
 
 abstract class ChessPiece {
-  private color: Color;
-  private position: string;
+  protected color: Color;
+  protected position: string;
   protected board: Chessboard;
 
   constructor(color: Color, board: Chessboard) {

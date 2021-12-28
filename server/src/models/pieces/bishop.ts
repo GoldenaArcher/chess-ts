@@ -1,4 +1,3 @@
-import { isWhite } from './../../util/chessUtil';
 import ChessPiece from './chessPiece';
 import { PieceType } from './pieceType';
 
