@@ -25,6 +25,9 @@ export const getIndeciesFromPos = (position: string) => {
   return { row: 8 - row, col };
 };
 
+export const getPosFromIndecies = (row: number, col: number) =>
+  `${String.fromCharCode(col + 97)}${8 - row}`;
+
 export const isLegalMove = (position: string) => {
   const pattern = /^([a-h][1-8])$/;
 

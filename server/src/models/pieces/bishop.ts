@@ -8,11 +8,13 @@ class Bishop extends ChessPiece {
   }
 
   public getLegalMoves(): string[] {
-    return [];
-  }
+    const res: string[] = [];
 
-  public toString(): string {
-    return isWhite(this) ? '♗' : '♝';
+    res.push(...this.getLegalMoveOneDirection(1, 1));
+    res.push(...this.getLegalMoveOneDirection(1, -1));
+    res.push(...this.getLegalMoveOneDirection(-1, -1));
+    res.push(...this.getLegalMoveOneDirection(-1, 1));
+    return res;
   }
 }
 
