@@ -8,6 +8,16 @@ class Rook extends ChessPiece {
     return PieceType.Rook;
   }
 
+  // TODO castle
+  /**
+   * Your king and rook have not moved!
+   * Your king is NOT in check!
+   * Your king does not pass through check!
+   * No pieces between the king and rook!
+   *
+   */
+  protected castle() {}
+
   public getLegalMoves(): string[] {
     const res: string[] = [];
 

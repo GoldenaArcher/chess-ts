@@ -11,7 +11,7 @@ import Player from './player';
 
 class Chessboard {
   // board[0][0] starts with a8, board[7][7] ends with h1
-  private board: ChessPiece[][];
+  private board: ChessPiece[][] | undefined[][];
   //   private playerWhite: Player;
   //   private playerBlack: Player;
 
@@ -19,7 +19,7 @@ class Chessboard {
     this.board = Array.from(Array(8), (_) => Array(8));
   }
 
-  public getBoard(): ChessPiece[][] {
+  public getBoard(): ChessPiece[][] | undefined[][] {
     return this.board;
   }
 
@@ -35,12 +35,12 @@ class Chessboard {
    * @param {ChessPiece} piece
    * @returns {boolean}
    */
-  public placePiece(position: string, piece: ChessPiece): boolean {
+  public placePiece(position: string, piece: ChessPiece | undefined): boolean {
     if (!isLegalMove(position)) return false;
 
     const { col, row } = getIndeciesFromPos(position);
     this.board[row][col] = piece;
-    piece.setPosition(position);
+    piece?.setPosition(position);
     return true;
   }
 
@@ -50,7 +50,7 @@ class Chessboard {
    * @returns {ChessPiece}
    * @throws {IllegalPositionError}
    */
-  public getPiece(position: string): ChessPiece {
+  public getPiece(position: string): ChessPiece | undefined {
     if (!isLegalMove(position))
       throw new IllegalPositionError(
         `Position ${position} is not a legal position`
@@ -61,6 +61,14 @@ class Chessboard {
     return this.board[row][col];
   }
 
+  // todo
+  // move castle pieces
+  private castleMove() {}
+
+  // todo
+  // en passant
+  private promote() {}
+
   /**
    *
    * @param {string} fromPos
@@ -68,10 +76,20 @@ class Chessboard {
    * @throws {IllegalMoveError}
    */
   public move(fromPos: string, toPos: string): void {
+    const errMsg = `From ${fromPos} to ${toPos} is not a legal move`;
+
     if (!isLegalMove(fromPos) || !isLegalMove(toPos))
-      throw new IllegalMoveError(
-        `From ${fromPos} to ${toPos} is not a legal move`
-      );
+      throw new IllegalMoveError(errMsg);
+
+    const fromPiece = this.getPiece(fromPos);
+
+    if (!fromPiece) throw new IllegalMoveError(errMsg);
+
+    if (!fromPiece.getLegalMoves().includes(toPos))
+      throw new IllegalMoveError(errMsg);
+
+    this.placePiece(fromPos, undefined);
+    this.placePiece(toPos, fromPiece);
   }
 }
 

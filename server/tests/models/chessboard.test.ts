@@ -9,9 +9,10 @@ import Knight from '../../src/models/pieces/knight';
 import Queen from '../../src/models/pieces/queen';
 import King from '../../src/models/pieces/king';
 import Pawn from '../../src/models/pieces/pawn';
+import IllegalMoveError from '../../src/models/errors/illegalMoveError';
 
-const isSamePiece = (piece1: ChessPiece, piece2: ChessPiece) => {
-  return isSameColor(piece1, piece2) && piece1.getType() === piece2.getType();
+const isSamePiece = (piece1: ChessPiece | undefined, piece2: ChessPiece) => {
+  return isSameColor(piece1, piece2) && piece1?.getType() === piece2.getType();
 };
 
 describe('Test Chessboard functions', () => {
@@ -47,50 +48,114 @@ describe('Test Chessboard functions', () => {
     const blackPawn = new Pawn(Color.Black, chessboard);
     const whitePawn = new Pawn(Color.White, chessboard);
 
-    expect(isSamePiece(blackRook, chessboard.getPiece('a8'))).toBe(true);
-    expect(isSamePiece(blackRook, chessboard.getPiece('h8'))).toBe(true);
-    expect(isSamePiece(whiteRook, chessboard.getPiece('a1'))).toBe(true);
-    expect(isSamePiece(whiteRook, chessboard.getPiece('h1'))).toBe(true);
+    expect(
+      isSamePiece(blackRook, chessboard.getPiece('a8') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackRook, chessboard.getPiece('h8') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whiteRook, chessboard.getPiece('a1') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whiteRook, chessboard.getPiece('h1') as ChessPiece)
+    ).toBe(true);
 
-    expect(isSamePiece(blackKnight, chessboard.getPiece('b8'))).toBe(true);
-    expect(isSamePiece(blackKnight, chessboard.getPiece('g8'))).toBe(true);
-    expect(isSamePiece(whiteKnight, chessboard.getPiece('b1'))).toBe(true);
-    expect(isSamePiece(whiteKnight, chessboard.getPiece('g1'))).toBe(true);
+    expect(
+      isSamePiece(blackKnight, chessboard.getPiece('b8') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackKnight, chessboard.getPiece('g8') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whiteKnight, chessboard.getPiece('b1') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whiteKnight, chessboard.getPiece('g1') as ChessPiece)
+    ).toBe(true);
 
-    expect(isSamePiece(blackBishop, chessboard.getPiece('c8'))).toBe(true);
-    expect(isSamePiece(blackBishop, chessboard.getPiece('f8'))).toBe(true);
-    expect(isSamePiece(whiteBishop, chessboard.getPiece('c1'))).toBe(true);
-    expect(isSamePiece(whiteBishop, chessboard.getPiece('f1'))).toBe(true);
+    expect(
+      isSamePiece(blackBishop, chessboard.getPiece('c8') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackBishop, chessboard.getPiece('f8') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whiteBishop, chessboard.getPiece('c1') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whiteBishop, chessboard.getPiece('f1') as ChessPiece)
+    ).toBe(true);
 
-    expect(isSamePiece(blackQueen, chessboard.getPiece('d8'))).toBe(true);
-    expect(isSamePiece(whiteQueen, chessboard.getPiece('d1'))).toBe(true);
+    expect(
+      isSamePiece(blackQueen, chessboard.getPiece('d8') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whiteQueen, chessboard.getPiece('d1') as ChessPiece)
+    ).toBe(true);
 
-    expect(isSamePiece(blackKing, chessboard.getPiece('e8'))).toBe(true);
-    expect(isSamePiece(whiteKing, chessboard.getPiece('e1'))).toBe(true);
+    expect(
+      isSamePiece(blackKing, chessboard.getPiece('e8') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whiteKing, chessboard.getPiece('e1') as ChessPiece)
+    ).toBe(true);
 
-    expect(isSamePiece(blackPawn, chessboard.getPiece('a7'))).toBe(true);
-    expect(isSamePiece(blackPawn, chessboard.getPiece('b7'))).toBe(true);
-    expect(isSamePiece(blackPawn, chessboard.getPiece('c7'))).toBe(true);
-    expect(isSamePiece(blackPawn, chessboard.getPiece('d7'))).toBe(true);
-    expect(isSamePiece(blackPawn, chessboard.getPiece('e7'))).toBe(true);
-    expect(isSamePiece(blackPawn, chessboard.getPiece('f7'))).toBe(true);
-    expect(isSamePiece(blackPawn, chessboard.getPiece('g7'))).toBe(true);
-    expect(isSamePiece(blackPawn, chessboard.getPiece('h7'))).toBe(true);
+    expect(
+      isSamePiece(blackPawn, chessboard.getPiece('a7') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackPawn, chessboard.getPiece('b7') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackPawn, chessboard.getPiece('c7') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackPawn, chessboard.getPiece('d7') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackPawn, chessboard.getPiece('e7') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackPawn, chessboard.getPiece('f7') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackPawn, chessboard.getPiece('g7') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(blackPawn, chessboard.getPiece('h7') as ChessPiece)
+    ).toBe(true);
 
-    expect(isSamePiece(whitePawn, chessboard.getPiece('a2'))).toBe(true);
-    expect(isSamePiece(whitePawn, chessboard.getPiece('b2'))).toBe(true);
-    expect(isSamePiece(whitePawn, chessboard.getPiece('c2'))).toBe(true);
-    expect(isSamePiece(whitePawn, chessboard.getPiece('d2'))).toBe(true);
-    expect(isSamePiece(whitePawn, chessboard.getPiece('e2'))).toBe(true);
-    expect(isSamePiece(whitePawn, chessboard.getPiece('f2'))).toBe(true);
-    expect(isSamePiece(whitePawn, chessboard.getPiece('g2'))).toBe(true);
-    expect(isSamePiece(whitePawn, chessboard.getPiece('h2'))).toBe(true);
+    expect(
+      isSamePiece(whitePawn, chessboard.getPiece('a2') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whitePawn, chessboard.getPiece('b2') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whitePawn, chessboard.getPiece('c2') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whitePawn, chessboard.getPiece('d2') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whitePawn, chessboard.getPiece('e2') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whitePawn, chessboard.getPiece('f2') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whitePawn, chessboard.getPiece('g2') as ChessPiece)
+    ).toBe(true);
+    expect(
+      isSamePiece(whitePawn, chessboard.getPiece('h2') as ChessPiece)
+    ).toBe(true);
   });
 
   describe('test placePiece', () => {
     test('place piece on valid position', () => {
       const res = chessboard.placePiece(position, piece);
-      expect(res).toBeTruthy;
+      expect(res).toBeTruthy();
       expect(piece.getPosition()).toBe(position);
       expect(chessboard.getPiece(position)).toBe(piece);
     });
@@ -108,7 +173,7 @@ describe('Test Chessboard functions', () => {
 
   describe('test getPiece', () => {
     test('get piece on valid position', () => {
-      expect(chessboard.getPiece(position)).toBeNull;
+      expect(chessboard.getPiece(position)).toBeUndefined();
       chessboard.placePiece(position, piece);
       expect(chessboard.getPiece(position)).toBe(piece);
     });
@@ -122,8 +187,24 @@ describe('Test Chessboard functions', () => {
   });
 
   describe('test move function', () => {
-    test.todo('test legal move');
+    test('test legal move', () => {
+      chessboard.initialize();
 
-    test.todo('test illegal move');
+      chessboard.move('d2', 'd4');
+
+      expect(chessboard.getPiece('d2')).toBeUndefined();
+      expect(
+        isSamePiece(
+          chessboard.getPiece('d4'),
+          new Pawn(Color.White, chessboard)
+        )
+      ).toBeTruthy();
+    });
+
+    test('test illegal move', () => {
+      chessboard.initialize();
+
+      expect(() => chessboard.move('d2', 'd5')).toThrow(IllegalMoveError);
+    });
   });
 });

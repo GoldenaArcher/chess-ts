@@ -14,7 +14,7 @@ class King extends ChessPiece {
    * Your king is NOT in check!
    * Your king does not pass through check!
    * No pieces between the king and rook!
-   * 
+   *
    */
   protected castle() {}
 
