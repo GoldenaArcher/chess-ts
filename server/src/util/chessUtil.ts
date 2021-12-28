@@ -14,9 +14,13 @@ export const isWhite = (obj: ChessPiece | Player): boolean =>
   obj.getColor() === Color.White;
 
 export const isSameColor = (
-  player: Player | ChessPiece | undefined,
-  piece: ChessPiece
-): boolean => player?.getColor() === piece.getColor();
+  playerPiece: Player | ChessPiece | undefined,
+  piece: ChessPiece | undefined
+): boolean => {
+  if (!playerPiece) return false;
+
+  return playerPiece?.getColor() === piece?.getColor();
+};
 
 export const getIndeciesFromPos = (position: string) => {
   const row = parseInt(position[1]),

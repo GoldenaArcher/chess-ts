@@ -7,13 +7,10 @@ import {
 import IllegalMoveError from './errors/illegalMoveError';
 import IllegalPositionError from './errors/illegalPositionError';
 import ChessPiece from './pieces/chessPiece';
-import Player from './player';
 
 class Chessboard {
   // board[0][0] starts with a8, board[7][7] ends with h1
   private board: ChessPiece[][] | undefined[][];
-  //   private playerWhite: Player;
-  //   private playerBlack: Player;
 
   constructor() {
     this.board = Array.from(Array(8), (_) => Array(8));
@@ -23,10 +20,14 @@ class Chessboard {
     return this.board;
   }
 
-  public initialize(): void {
-    for (const [pos, piece] of Object.entries(standardOpening)) {
+  public loadBoard(match: object) {
+    for (const [pos, piece] of Object.entries(match)) {
       this.placePiece(pos, createNewPiece(piece, this));
     }
+  }
+
+  public initialize(): void {
+    this.loadBoard(standardOpening);
   }
 
   /**
