@@ -9,10 +9,10 @@ class Bishop extends ChessPiece {
   public getLegalMoves(): string[] {
     const res: string[] = [];
 
-    res.push(...this.getLegalMoveOneDirection(1, 1));
-    res.push(...this.getLegalMoveOneDirection(1, -1));
-    res.push(...this.getLegalMoveOneDirection(-1, -1));
-    res.push(...this.getLegalMoveOneDirection(-1, 1));
+    res.push(...this.getLegalMovesOneDirection(1, 1));
+    res.push(...this.getLegalMovesOneDirection(1, -1));
+    res.push(...this.getLegalMovesOneDirection(-1, -1));
+    res.push(...this.getLegalMovesOneDirection(-1, 1));
     return res;
   }
 }

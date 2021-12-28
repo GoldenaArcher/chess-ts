@@ -2,6 +2,7 @@ import {
   isLegalMove,
   getPosFromIndecies,
   getIndeciesFromPos,
+  isSameColor,
 } from './../../util/chessUtil';
 import { PieceType, PieceObject } from './pieceType';
 import Chessboard from '../chessboard';
@@ -30,7 +31,7 @@ abstract class ChessPiece {
     return this.position;
   }
 
-  protected getLegalMoveOneDirection(
+  protected getLegalMovesOneDirection(
     rowIndent: number,
     colIndent: number
   ): string[] {
@@ -58,6 +59,23 @@ abstract class ChessPiece {
       res.push(currPos);
 
     return res;
+  }
+
+  protected getLegalMoveOnePosition(
+    rowIndex: number,
+    colIndex: number,
+    res: string[]
+  ) {
+    const { row, col } = getIndeciesFromPos(this.position);
+    const currPosition = getPosFromIndecies(row + rowIndex, col + colIndex);
+
+    if (isLegalMove(currPosition)) {
+      const currPiece = this.board.getPiece(currPosition);
+
+      if (!currPiece || !isSameColor(currPiece, this)) {
+        res.push(currPosition);
+      }
+    }
   }
 
   public abstract getLegalMoves(): string[];

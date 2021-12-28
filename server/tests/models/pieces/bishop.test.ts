@@ -3,7 +3,7 @@ import Chessboard from '../../../src/models/chessboard';
 import Color from '../../../src/models/color';
 import Bishop from '../../../src/models/pieces/bishop';
 
-describe('Bishop functions test', () => {
+describe('Bishop legal moves test', () => {
   let board: Chessboard;
   let blackBishop: Bishop;
   let whiteBishop: Bishop;

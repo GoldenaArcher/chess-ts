@@ -3,7 +3,7 @@ import Color from '../../../src/models/color';
 import Knight from '../../../src/models/pieces/knight';
 import { areEqualLegalMoves } from '../../util/pieceTestHelper';
 
-describe('Knight functions test', () => {
+describe('Knight legal moves test', () => {
   let board: Chessboard;
   let blackKnight: Knight;
   let whiteKnight: Knight;

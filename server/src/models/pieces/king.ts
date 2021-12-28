@@ -7,10 +7,18 @@ class King extends ChessPiece {
   }
 
   public getLegalMoves(): string[] {
-    throw new Error('Method not implemented.');
-  }
-  public toString(): string {
-    throw new Error('Method not implemented.');
+    const res: string[] = [];
+
+    this.getLegalMoveOnePosition(-1, -1, res);
+    this.getLegalMoveOnePosition(-1, 0, res);
+    this.getLegalMoveOnePosition(-1, 1, res);
+    this.getLegalMoveOnePosition(0, 1, res);
+    this.getLegalMoveOnePosition(0, -1, res);
+    this.getLegalMoveOnePosition(1, -1, res);
+    this.getLegalMoveOnePosition(1, 0, res);
+    this.getLegalMoveOnePosition(1, 1, res);
+
+    return res;
   }
 }
 
