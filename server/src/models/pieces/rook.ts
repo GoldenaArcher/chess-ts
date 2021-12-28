@@ -9,7 +9,13 @@ class Rook extends ChessPiece {
   }
 
   public getLegalMoves(): string[] {
-    throw new Error('Method not implemented.');
+    const res: string[] = [];
+
+    res.push(...this.getLegalMovesOneDirection(0, 1));
+    res.push(...this.getLegalMovesOneDirection(0, -1));
+    res.push(...this.getLegalMovesOneDirection(-1, 0));
+    res.push(...this.getLegalMovesOneDirection(1, 0));
+    return res;
   }
 
   public move() {
