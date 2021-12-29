@@ -1,7 +1,7 @@
 import { areEqualLegalMoves } from './../../util/pieceTestHelper';
-import Chessboard from '../../../src/models/chessboard';
-import Color from '../../../src/models/color';
-import Rook from '../../../src/models/pieces/rook';
+import Chessboard from '../../../src/chess/chessboard';
+import Color from '../../../src/chess/color';
+import Rook from '../../../src/chess/pieces/rook';
 
 describe('Rook legal moves test', () => {
   let board: Chessboard;

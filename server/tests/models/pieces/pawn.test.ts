@@ -1,6 +1,6 @@
-import Chessboard from '../../../src/models/chessboard';
-import Color from '../../../src/models/color';
-import Pawn from '../../../src/models/pieces/pawn';
+import Chessboard from '../../../src/chess/chessboard';
+import Color from '../../../src/chess/color';
+import Pawn from '../../../src/chess/pieces/pawn';
 import { areEqualLegalMoves } from '../../util/pieceTestHelper';
 
 describe('Pawn legal moves test', () => {

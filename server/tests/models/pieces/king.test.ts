@@ -1,6 +1,6 @@
-import Chessboard from '../../../src/models/chessboard';
-import Color from '../../../src/models/color';
-import King from '../../../src/models/pieces/king';
+import Chessboard from '../../../src/chess/chessboard';
+import Color from '../../../src/chess/color';
+import King from '../../../src/chess/pieces/king';
 import { areEqualLegalMoves } from '../../util/pieceTestHelper';
 
 describe('king legal moves test', () => {

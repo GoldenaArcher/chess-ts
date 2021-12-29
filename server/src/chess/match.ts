@@ -1,7 +1,6 @@
 import { isSameColor } from './../util/chessUtil';
 import { getRandomInt } from '../util/matchUtil';
 import Chessboard from './chessboard';
-import ChessPiece from './pieces/chessPiece';
 import Player from './player';
 
 class Match {

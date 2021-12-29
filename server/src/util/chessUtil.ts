@@ -1,14 +1,14 @@
-import Chessboard from '../models/chessboard';
-import Color from '../models/color';
-import Bishop from '../models/pieces/bishop';
-import ChessPiece from '../models/pieces/chessPiece';
-import King from '../models/pieces/king';
-import Knight from '../models/pieces/knight';
-import Pawn from '../models/pieces/pawn';
-import { PieceType, PieceObject } from '../models/pieces/pieceType';
-import Queen from '../models/pieces/queen';
-import Rook from '../models/pieces/rook';
-import Player from '../models/player';
+import Chessboard from "../chess/chessboard";
+import Color from "../chess/color";
+import Bishop from "../chess/pieces/bishop";
+import ChessPiece from "../chess/pieces/chessPiece";
+import King from "../chess/pieces/king";
+import Knight from "../chess/pieces/knight";
+import Pawn from "../chess/pieces/pawn";
+import { PieceObject, PieceType } from "../chess/pieces/pieceType";
+import Queen from "../chess/pieces/queen";
+import Rook from "../chess/pieces/rook";
+import Player from "../chess/player";
 
 export const isWhite = (obj: ChessPiece | Player): boolean =>
   obj.getColor() === Color.White;

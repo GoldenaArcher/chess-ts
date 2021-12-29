@@ -1,7 +1,7 @@
 import { areEqualLegalMoves } from './../../util/pieceTestHelper';
-import Chessboard from '../../../src/models/chessboard';
-import Color from '../../../src/models/color';
-import Queen from '../../../src/models/pieces/queen';
+import Chessboard from '../../../src/chess/chessboard';
+import Color from '../../../src/chess/color';
+import Queen from '../../../src/chess/pieces/queen';
 
 describe('Queen legal moves test', () => {
   let board: Chessboard;

@@ -1,15 +1,15 @@
+import Chessboard from '../../src/chess/chessboard';
+import Color from '../../src/chess/color';
+import IllegalMoveError from '../../src/chess/errors/illegalMoveError';
+import IllegalPositionError from '../../src/chess/errors/illegalPositionError';
+import Bishop from '../../src/chess/pieces/bishop';
+import ChessPiece from '../../src/chess/pieces/chessPiece';
+import King from '../../src/chess/pieces/king';
+import Knight from '../../src/chess/pieces/knight';
+import Pawn from '../../src/chess/pieces/pawn';
+import Queen from '../../src/chess/pieces/queen';
+import Rook from '../../src/chess/pieces/rook';
 import { isSameColor } from './../../src/util/chessUtil';
-import Chessboard from '../../src/models/chessboard';
-import Color from '../../src/models/color';
-import Bishop from '../../src/models/pieces/bishop';
-import ChessPiece from '../../src/models/pieces/chessPiece';
-import IllegalPositionError from '../../src/models/errors/illegalPositionError';
-import Rook from '../../src/models/pieces/rook';
-import Knight from '../../src/models/pieces/knight';
-import Queen from '../../src/models/pieces/queen';
-import King from '../../src/models/pieces/king';
-import Pawn from '../../src/models/pieces/pawn';
-import IllegalMoveError from '../../src/models/errors/illegalMoveError';
 
 const isSamePiece = (piece1: ChessPiece | undefined, piece2: ChessPiece) => {
   return isSameColor(piece1, piece2) && piece1?.getType() === piece2.getType();

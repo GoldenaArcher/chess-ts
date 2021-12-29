@@ -1,7 +1,7 @@
 import { areEqualLegalMoves } from './../../util/pieceTestHelper';
-import Chessboard from '../../../src/models/chessboard';
-import Color from '../../../src/models/color';
-import Bishop from '../../../src/models/pieces/bishop';
+import Chessboard from '../../../src/chess/chessboard';
+import Bishop from '../../../src/chess/pieces/bishop';
+import Color from '../../../src/chess/color';
 
 describe('Bishop legal moves test', () => {
   let board: Chessboard;

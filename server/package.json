@@ -4,22 +4,24 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "tsc && nodemon dist/server.js",
+    "start": "tsc && nodemon dist/src/server.js",
     "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^17.0.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
-    "mongoose": "^5.13.13"
+    "mongoose": "^6.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-typescript": "^7.16.5",
+    "@types/express": "^4.17.13",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^17.0.5",
     "@types/jest": "^27.0.3",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",

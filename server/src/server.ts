@@ -10,12 +10,7 @@ let DB = '';
 if (DATABASE && DATABASE_PASSWORD)
   DB = DATABASE.replace('<PASSWORD>', DATABASE_PASSWORD);
 
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('DB Connection successful'));
+mongoose.connect(DB).then(() => console.log('DB Connection successful'));
 
 import app from './app';
 
