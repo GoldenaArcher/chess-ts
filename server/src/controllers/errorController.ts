@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { CastError, Error as MongooseError } from 'mongoose';
+import AppError from '../util/appError';
 
 interface IError {
   statusCode: number;
@@ -48,9 +49,12 @@ const handleDuplicateFieldsDB = (err: any) => {
 };
 
 const handleValidationErrorDB = (err: any) => {
-  const errors = Object.values(err.errors).map((el: any) => el.message);
+  let message = err.message;
 
-  const message = `Invalid input data. ${errors.join('. ')}.`;
+  if (err.errors) {
+    const errors = Object.values(err?.errors).map((el: any) => el.message);
+    message = `Invalid input data. ${errors.join('. ')}.`;
+  }
 
   return new AppError(message, 400);
 };
@@ -76,7 +80,13 @@ const globalErrorHandler = (
 
   const { NODE_ENV } = process.env;
   if (NODE_ENV === 'development') {
-    sendErrorDev(error, res);
+    // sendErrorDev(error, res);
+    if (err.name === 'CastError') error = handleCastErrorDB(err as CastError);
+    if (err.code === 11000) error = handleDuplicateFieldsDB(error);
+    if (err.name === 'ValidationError') error = handleValidationErrorDB(error);
+    if (err.name === 'JsonWebTokenError') error = handleJWTError();
+    if (err.name === 'TokenExpiredError') error = handleJWTExpiredToken();
+    sendErrorProduction(error, res);
   } else if (NODE_ENV === 'production') {
     if (err.name === 'CastError') error = handleCastErrorDB(err as CastError);
     if (err.code === 11000) error = handleDuplicateFieldsDB(error);

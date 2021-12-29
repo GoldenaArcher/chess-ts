@@ -28,3 +28,5 @@ class AppError extends Error {
     return this.operational;
   }
 }
+
+export default AppError;
