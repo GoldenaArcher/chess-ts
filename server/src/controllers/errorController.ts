@@ -49,8 +49,10 @@ const handleDuplicateFieldsDB = (err: any) => {
 };
 
 const handleValidationErrorDB = (err: any) => {
+  // message will display err msg from cutom validator
   let message = err.message;
 
+  // err.erros are the validation errors from mongoose
   if (err.errors) {
     const errors = Object.values(err?.errors).map((el: any) => el.message);
     message = `Invalid input data. ${errors.join('. ')}.`;
@@ -80,13 +82,7 @@ const globalErrorHandler = (
 
   const { NODE_ENV } = process.env;
   if (NODE_ENV === 'development') {
-    // sendErrorDev(error, res);
-    if (err.name === 'CastError') error = handleCastErrorDB(err as CastError);
-    if (err.code === 11000) error = handleDuplicateFieldsDB(error);
-    if (err.name === 'ValidationError') error = handleValidationErrorDB(error);
-    if (err.name === 'JsonWebTokenError') error = handleJWTError();
-    if (err.name === 'TokenExpiredError') error = handleJWTExpiredToken();
-    sendErrorProduction(error, res);
+    sendErrorDev(error, res);
   } else if (NODE_ENV === 'production') {
     if (err.name === 'CastError') error = handleCastErrorDB(err as CastError);
     if (err.code === 11000) error = handleDuplicateFieldsDB(error);

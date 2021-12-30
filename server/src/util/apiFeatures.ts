@@ -1,13 +1,18 @@
 import { Query } from 'mongoose';
+import qs from 'qs';
 
 class ApiFeatures {
   private query: Query<any, any>;
   private queryString: any;
 
   // query string refers to req.query
-  constructor(query: Query<any, any>, queryString: any) {
+  constructor(query: Query<any, any>, queryString: qs.ParsedQs) {
     this.query = query;
     this.queryString = queryString;
+  }
+
+  getQuery() {
+    return this.query;
   }
 
   filter() {
